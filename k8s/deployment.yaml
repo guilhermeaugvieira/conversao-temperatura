@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: conversaotemperatura
+  name: temperatura
 spec:
   replicas: 2
   selector:
@@ -23,14 +23,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: conversaotemperatura
+  name: conversao
 spec:
   selector:
     app: conversaotemperatura
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: http
       port: 80
       targetPort: 8080
       protocol: TCP
-      nodePort: 30000
